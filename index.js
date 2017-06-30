@@ -256,7 +256,7 @@ MqttGarageAccessory.prototype.logState = function () {
   this.log(`Current: [${this.stateToString(this.currentState)}] | Target: [${this.stateToString(this.targetState)}]`);
 }
 
-MqttGarageAccessory.prototype.stateToString(state) {
+MqttGarageAccessory.prototype.stateToString = function(state) {
   switch(state){
     case this.OPEN:
       return "OPEN";
