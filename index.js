@@ -75,7 +75,8 @@ function MqttGarageAccessory(log, config) {
   this.targetStateCharacteristic = undefined;
   this.obstructionCharacteristic = undefined;
   this.pinTriggered = false;
-  
+  this.openChanged = debounce(this.openChanged.bind(this),1000);
+  this.closedChanged = debounce(this.closedChanged.bind(this),1000);
   this.service = new Service.GarageDoorOpener(this.name);
 
   this.service
@@ -119,7 +120,7 @@ function MqttGarageAccessory(log, config) {
 
 }
 
-  MqttGarageAccessory.prototype.openedChanged = debounce(function (value) {
+  MqttGarageAccessory.prototype.openedChanged = function (value) {
 
     if (value == 1) {
       //closing
@@ -145,10 +146,10 @@ function MqttGarageAccessory(log, config) {
       //  this.pushButton();
       //}
     }
-  }.bind(this), 1000);
+  };
 
 
-  MqttGarageAccessory.prototype.closedChanged = debounce(function (value) {
+  MqttGarageAccessory.prototype.closedChanged = function (value) {
     if (value == 1) {
       //opening
       if (this.currentState != this.CLOSED) return;
@@ -180,7 +181,7 @@ function MqttGarageAccessory(log, config) {
         this.closeTimeout = undefined;
       }
     }
-  }.bind(this), 1000);
+  };
 
 MqttGarageAccessory.prototype.notify = function () {
     this.log("notifying...");
