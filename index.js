@@ -242,6 +242,7 @@ MqttGarageAccessory.prototype.setTargetState = function (state, callback) {
     if(this.pinTriggered){
       this.pinTriggered = false;
       callback(null, this.targetState);
+      return;
     }
     this.log(state);
     this.targetState = state;
