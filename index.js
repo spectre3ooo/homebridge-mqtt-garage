@@ -40,9 +40,9 @@ function MqttGarageAccessory(log, config) {
   this.log = log;
   this.name = config["name"];
   this.id = config["id"];
-  this.openTopic = `garage/${id}/openPin`;
-  this.closedTopic = `garage/${id}/closedPin`;
-  this.buttonTopic = `garage/${id}/button`;
+  this.openTopic = `garage/${this.id}/openPin`;
+  this.closedTopic = `garage/${this.id}/closedPin`;
+  this.buttonTopic = `garage/${this.id}/button`;
 	this.client_Id = 'mqttjs_' + Math.random().toString(16).substr(2, 8);
   this.mqttserver = config["mqttserver"];
 	this.options = {
