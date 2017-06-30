@@ -1,5 +1,5 @@
 {
-  "name": "homebridge-mqttgarage",
+  "name": "homebridge-mqtt-garage",
   "version": "0.1.0",
   "description": "",
   "main": "index.js",
