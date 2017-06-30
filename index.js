@@ -14,6 +14,7 @@ Config:
       "name": "Left Garage Door",
       "description": "",
       "id": "LEFTGD",
+      "mqttserver": "MQTT_SERVER",
       "mqttusername": "YOUR_MQTT_USERNAME",
       "mqttpassword": "YOUR_MQTT_PASSWORD",
       "pushbulletApiKey": "PUSHBULLET_API_KEY",
@@ -43,6 +44,7 @@ function MqttGarageAccessory(log, config) {
   this.closedTopic = `garage/${id}/closedPin`;
   this.buttonTopic = `garage/${id}/button`;
 	this.client_Id = 'mqttjs_' + Math.random().toString(16).substr(2, 8);
+  this.mqttserver = config["mqttserver"];
 	this.options = {
 	    keepalive: 10,
     	clientId: this.client_Id,
