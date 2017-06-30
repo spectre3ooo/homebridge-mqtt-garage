@@ -75,7 +75,7 @@ function MqttGarageAccessory(log, config) {
   this.targetStateCharacteristic = undefined;
   this.obstructionCharacteristic = undefined;
   this.pinTriggered = false;
-  this.openChanged = debounce(this.openChanged.bind(this),1000);
+  this.openedChanged = debounce(this.openedChanged.bind(this),1000);
   this.closedChanged = debounce(this.closedChanged.bind(this),1000);
   this.service = new Service.GarageDoorOpener(this.name);
 
