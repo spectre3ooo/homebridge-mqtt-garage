@@ -131,6 +131,7 @@ function MqttGarageAccessory(log, config) {
       this.targetState = this.CLOSED;
       this.logState();
       this.service.setCharacteristic(Characteristic.CurrentDoorState, this.currentState);
+      this.service.setCharacteristic(Characteristic.TargetDoorState, this.targetState);
     } else if (value == 0) {
       //open
       if (this.currentState === this.OPEN || this.currentState === this.CLOSED) return;
@@ -140,8 +141,11 @@ function MqttGarageAccessory(log, config) {
         this.service.setCharacteristic(Characteristic.ObstructionDetected, this.obstructionDetected);
       }
       this.currentState = this.OPEN;
+      this.pinTriggered = true;
+      this.targetState = this.OPEN;
       this.logState();
       this.service.setCharacteristic(Characteristic.CurrentDoorState, this.currentState);
+      this.service.setCharacteristic(Characteristic.TargetDoorState, this.targetState);
       //if(this.targetState == this.CLOSED){
       //  this.pushButton();
       //}
@@ -174,8 +178,12 @@ function MqttGarageAccessory(log, config) {
         this.service.setCharacteristic(Characteristic.ObstructionDetected, this.obstructionDetected);
       }
       this.currentState = this.CLOSED;
+      this.pinTriggered = true;
+      this.targetState = this.CLOSED;
+
       this.logState();
       this.service.setCharacteristic(Characteristic.CurrentDoorState, this.currentState);
+      this.service.setCharacteristic(Characteristic.TargetDoorState, this.targetState);
       if (this.closeTimeout) {
         clearInterval(this.closeTimeout);
         this.closeTimeout = undefined;
